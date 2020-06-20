@@ -1,0 +1,23 @@
+<nav class="navbar navbar-dark bg-dark justify-content-between">
+    <a class="navbar-brand">{{title}}</a>
+    {{!-- {{Traditional forms only work with GET or POST}} --}}
+    <form class="form-inline" action="/" method="GET">
+        <input class="form-control mr-sm-2" type="search" name="city" placeholder="Enter a city name" required>
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+</nav>
+
+{{!-- {{forecast.temp // forecast.weather.0.description}} --}}
+{{#if forecast}}
+<container class="m-5">
+    <row class=" d-flex flex-column align-items-center justify-content-center">
+        <h1>Weather at {{city}}</h1>
+        <img src="http://openweathermap.org/img/wn/{{forecast.weather.0.icon}}@2x.png" width="10%">
+        <h1>{{forecast.temp}}&#8451;</h1>
+        <h1>{{forecast.weather.0.description}}</h1>
+    </row>
+    <row>
+
+    </row>
+</container>
+{{/if}}
