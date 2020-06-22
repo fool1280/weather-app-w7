@@ -27,4 +27,21 @@ router.get("/", async function (req, res, next) {
     }
 });
 
+router.get("/weather-by-coords", async (req, res, next) => {
+    try {
+        const { lon, lat } = req.query;
+        if (!lon || !lat) {
+            return res.json({
+                status: "failed",
+                message: "requires longitude and latitude",
+            });
+        }
+        const forecast = await getForecast([lon, lat]);
+        return res.json({ status: "ok", data: forecast.current });
+    } catch (error) {
+        console.log(error);
+        next(error);
+    }
+});
+
 module.exports = router;
